@@ -18,6 +18,7 @@ defmodule GroceriesListWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    resources "/groceries", GroceryController, only: [:index, :new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
