@@ -34,7 +34,11 @@ defmodule GroceriesListWeb.GroceryController do
     end
   end
 
-  def delete(conn, params) do
-    # should delete a grocery
+  def delete(conn, %{"id" => id}) do
+    Repo.get!(Grocery, id) |> Repo.delete!
+
+    conn
+    |> put_flash(:info, "Grocery successfully deleted.")
+    |> redirect(to: Routes.grocery_path(conn, :index))
   end
 end

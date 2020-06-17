@@ -3,7 +3,7 @@
 
   <ul>
   <%= for grocery <- @groceries do %>
-    <li><%= grocery.name %></li>
+    <li><%= grocery.name %> <%= link("Delete", to: Routes.grocery_path(@conn, :delete, grocery), method: :delete) %></li>
   <% end %>
   </ul>
 </div>
