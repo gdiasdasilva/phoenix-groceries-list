@@ -1,0 +1,4 @@
+<%= form_for @changeset, Routes.grocery_path(@conn, :create), fn f -> %>
+  <%= text_input f, :name %>
+  <%= submit "Add" %>
+<% end %>

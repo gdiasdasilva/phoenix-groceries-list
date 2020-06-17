@@ -11,7 +11,7 @@ defmodule GroceriesList.Grocery do
   end
 
   @doc false
-  def changeset(grocery, attrs) do
+  def changeset(grocery, attrs \\ %{}) do
     grocery
     |> cast(attrs, [:name, :quantity])
     |> validate_required(:name)

@@ -8,11 +8,15 @@ defmodule GroceriesListWeb.GroceryController do
 
     conn
     |> assign(:groceries, groceries)
-    |> render("index.html")
+    |> render(:index)
   end
 
   def new(conn, _params) do
-    # should show the groceries form
+    changeset = Grocery.changeset(%Grocery{})
+
+    conn
+    |> assign(:changeset, changeset)
+    |> render(:new)
   end
 
   def create(conn, params) do
