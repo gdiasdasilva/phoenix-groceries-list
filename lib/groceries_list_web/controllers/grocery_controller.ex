@@ -1,8 +1,14 @@
 defmodule GroceriesListWeb.GroceryController do
   use GroceriesListWeb, :controller
 
+  alias GroceriesList.{Grocery, Repo}
+
   def index(conn, _params) do
-    render(conn, :index)
+    groceries = Repo.all(Grocery)
+
+    conn
+    |> assign(:groceries, groceries)
+    |> render("index.html")
   end
 
   def new(conn, _params) do

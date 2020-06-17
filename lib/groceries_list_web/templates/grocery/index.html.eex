@@ -1,3 +1,9 @@
-<div class="phx-hero">
-  <h2>Hello World, from Phoenix!</h2>
+<div class="">
+  <h2>Groceries to buy</h2>
+
+  <ul>
+  <%= for grocery <- @groceries do %>
+    <li><%= grocery.name %></li>
+  <% end %>
+  </ul>
 </div>
