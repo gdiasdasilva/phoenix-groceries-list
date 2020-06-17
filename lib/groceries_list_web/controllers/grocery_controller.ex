@@ -19,8 +19,19 @@ defmodule GroceriesListWeb.GroceryController do
     |> render(:new)
   end
 
-  def create(conn, params) do
-    # should persist a grocery
+  def create(conn, %{"grocery" => params}) do
+    changeset = Grocery.changeset(%Grocery{}, params)
+
+    case Repo.insert(changeset) do
+      {:ok, grocery} ->
+        conn
+        |> put_flash(:info, "#{grocery.name} successfully added.")
+        |> redirect(to: Routes.grocery_path(conn, :index))
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, "There was an error while creating the grocery.")
+        |> render(:new, changeset: changeset)
+    end
   end
 
   def delete(conn, params) do
