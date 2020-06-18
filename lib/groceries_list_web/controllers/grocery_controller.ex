@@ -41,4 +41,14 @@ defmodule GroceriesListWeb.GroceryController do
     |> put_flash(:info, "Grocery successfully deleted.")
     |> redirect(to: Routes.grocery_path(conn, :index))
   end
+
+  def add(conn, %{"grocery_id" => id}) do
+    grocery = Repo.get!(Grocery, id)
+
+    grocery
+    |> Grocery.changeset(%{quantity: grocery.quantity + 1})
+    |> Repo.update()
+
+    redirect(conn, to: Routes.grocery_path(conn, :index))
+  end
 end
