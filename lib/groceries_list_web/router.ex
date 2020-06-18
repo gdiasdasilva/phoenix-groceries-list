@@ -21,6 +21,7 @@ defmodule GroceriesListWeb.Router do
     resources "/groceries", GroceryController, only: [:index, :new, :create, :delete] do
       put "/add", GroceryController, :add
       put "/subtract", GroceryController, :subtract
+      put "/complete", GroceryController, :complete
     end
   end
 

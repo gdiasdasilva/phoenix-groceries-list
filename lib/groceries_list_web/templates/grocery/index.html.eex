@@ -4,11 +4,15 @@
   <ul>
   <%= for grocery <- @groceries do %>
     <li>
-      <%= grocery.quantity %> <strong><%= grocery.name %></strong>
-
-      <%= link(to: Routes.grocery_grocery_path(@conn, :add, grocery), method: :put) do %><i class="fas fa-plus-circle"></i><% end %>
-      <%= link(to: Routes.grocery_grocery_path(@conn, :subtract, grocery), method: :put) do %><i class="fas fa-minus-circle"></i><% end %>
-      <%= link(to: Routes.grocery_path(@conn, :delete, grocery), method: :delete) do %><i class="far fa-trash-alt"></i><% end %>
+      <%= if grocery.complete do %>
+        <s><%= grocery.quantity %> <%= grocery.name %></s>
+      <% else %>
+        <%= grocery.quantity %> <strong><%= grocery.name %></strong>
+        <%= link(to: Routes.grocery_grocery_path(@conn, :add, grocery), method: :put) do %><i class="fas fa-plus-circle"></i><% end %>
+        <%= link(to: Routes.grocery_grocery_path(@conn, :subtract, grocery), method: :put) do %><i class="fas fa-minus-circle"></i><% end %>
+        <%= link(to: Routes.grocery_grocery_path(@conn, :complete, grocery), method: :put) do %><i class="fas fa-check"></i><% end %>
+        <%= link(to: Routes.grocery_path(@conn, :delete, grocery), method: :delete) do %><i class="far fa-trash-alt"></i><% end %>
+      <% end %>
     </li>
   <% end %>
   </ul>

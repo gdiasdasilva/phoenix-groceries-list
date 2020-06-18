@@ -61,4 +61,11 @@ defmodule GroceriesListWeb.GroceryController do
 
     redirect(conn, to: Routes.grocery_path(conn, :index))
   end
+
+  def complete(conn, %{"grocery_id" => id}) do
+    Repo.get!(Grocery, id) |> Grocery.changeset(%{complete: true}) |> Repo.update()
+
+    IO.inspect(Repo.get!(Grocery, id))
+    redirect(conn, to: Routes.grocery_path(conn, :index))
+  end
 end
