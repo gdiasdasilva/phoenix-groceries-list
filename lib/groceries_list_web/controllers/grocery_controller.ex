@@ -51,4 +51,14 @@ defmodule GroceriesListWeb.GroceryController do
 
     redirect(conn, to: Routes.grocery_path(conn, :index))
   end
+
+  def subtract(conn, %{"grocery_id" => id}) do
+    grocery = Repo.get!(Grocery, id)
+
+    grocery
+    |> Grocery.changeset(%{quantity: grocery.quantity - 1})
+    |> Repo.update()
+
+    redirect(conn, to: Routes.grocery_path(conn, :index))
+  end
 end
