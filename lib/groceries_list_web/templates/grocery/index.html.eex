@@ -3,7 +3,10 @@
 
   <ul>
   <%= for grocery <- @groceries do %>
-    <li><%= grocery.name %> <%= link("Delete", to: Routes.grocery_path(@conn, :delete, grocery), method: :delete) %></li>
+    <li>
+      <%= grocery.quantity %> <strong><%= grocery.name %></strong>
+      <%= link(to: Routes.grocery_path(@conn, :delete, grocery), method: :delete) do %><i class="far fa-trash-alt"></i><% end %>
+    </li>
   <% end %>
   </ul>
 </div>

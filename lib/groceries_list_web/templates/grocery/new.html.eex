@@ -1,6 +1,13 @@
+<h2>Add a new grocery</h2>
+
 <%= form_for @changeset, Routes.grocery_path(@conn, :create), fn f -> %>
+  <%= label f, :name, "Name" %>
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
+
+  <%= label f, :quantity, "Quantity" %>
+  <%= number_input f, :quantity %>
+  <%= error_tag f, :quantity %>
 
   <%= submit "Add" %>
 <% end %>

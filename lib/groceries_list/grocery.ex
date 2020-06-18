@@ -14,8 +14,9 @@ defmodule GroceriesList.Grocery do
   def changeset(grocery, attrs \\ %{}) do
     grocery
     |> cast(attrs, [:name, :quantity])
-    |> validate_required(:name)
+    |> validate_required([:name, :quantity])
     |> validate_length(:name, min: 3)
     |> validate_length(:name, max: 40)
+    |> validate_number(:quantity, greater_than: 0)
   end
 end
