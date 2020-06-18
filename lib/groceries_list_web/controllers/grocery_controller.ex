@@ -2,9 +2,10 @@ defmodule GroceriesListWeb.GroceryController do
   use GroceriesListWeb, :controller
 
   alias GroceriesList.{Grocery, Repo}
+  require Ecto.Query
 
   def index(conn, _params) do
-    groceries = Repo.all(Grocery)
+    groceries = Grocery |> Ecto.Query.order_by([asc: :complete, asc: :name] ) |> Repo.all()
 
     conn
     |> assign(:groceries, groceries)
